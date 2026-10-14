@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #164e38;
+  --color-on-brand: #ffffff;
+  --color-ink: #1b2b22;
+  --color-muted: #52645a;
+  --color-canvas: #f7f7f1;
+  --color-surface: #fffefa;
+  --color-border: #d9e1d7;
+  --color-focus: #b6df5b;
+
+  --font-sans: "Segoe UI", Arial, sans-serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+
+  --container-site: 80rem;
+  --radius-card: 0.75rem;
+  --radius-control: 0.3rem;
+}
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  min-width: 18rem;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7.25rem;
+}
+
+body {
+  min-width: 18rem;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 50;
+  top: 0.75rem;
+  left: 0.75rem;
+  transform: translateY(-160%);
+  border-radius: var(--radius-control);
+  background: var(--color-brand);
+  padding: 0.75rem 1rem;
+  color: var(--color-on-brand);
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 950px) {
+  html {
+    scroll-padding-top: 5.75rem;
+  }
+}

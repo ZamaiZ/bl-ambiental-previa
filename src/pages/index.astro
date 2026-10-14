@@ -1,0 +1,184 @@
+---
+import FadeInText from "@astroanimate/core/FadeInText";
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "../config/site";
+import { previewMedia } from "../config/media";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/home.css";
+
+const whatsappHref = `https://wa.me/${siteConfig.contact.whatsapp}`;
+const homeHref = import.meta.env.BASE_URL;
+
+const services = [
+  { number: "01", icon: "landscape", title: "Paisagismo", description: "Planejamento de jardins para transformar a maneira de viver e usar cada espaço." },
+  { number: "02", icon: "planting", title: "Implantação", description: "Preparação e plantio para tirar o novo jardim do plano e colocá-lo em prática." },
+  { number: "03", icon: "renewal", title: "Reforma", description: "Um novo olhar para jardins e áreas verdes que precisam ser revitalizados." },
+  { number: "04", icon: "care", title: "Manutenção", description: "Cuidados recorrentes para acompanhar o desenvolvimento do jardim." },
+] as const;
+
+const requestSteps = [
+  { number: "01", title: "Conte o que você precisa", description: "Pode ser um novo jardim, uma reforma ou o cuidado de uma área existente." },
+  { number: "02", title: "Envie fotos e localização", description: "Imagens do espaço e a cidade ajudam a iniciar a conversa sobre o serviço." },
+  { number: "03", title: "Converse com a BL", description: "Pelo WhatsApp, vocês podem combinar os próximos passos do orçamento." },
+] as const;
+---
+
+<BaseLayout
+  title="Paisagismo e cuidado de jardins"
+  description="Projeto paisagístico, implantação, reforma e manutenção de jardins em São Paulo e Grande São Paulo. Peça um orçamento pelo WhatsApp."
+>
+  <div class="site-shell">
+    <div class="topline">
+      <div class="topline-inner">
+        <span>Paisagismo & cuidado de jardins</span>
+        <span>São Paulo e Grande São Paulo</span>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand-link" href={homeHref} aria-label="BL Ambiental — início">
+          <img src={`${import.meta.env.BASE_URL}${siteConfig.logo.replace(/^\//, "")}`} alt="BL Ambiental" width="2048" height="877" decoding="async" />
+        </a>
+        <nav class="desktop-nav" aria-label="Navegação principal">
+          {siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+        <a class="header-cta" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+          <Icon name="whatsapp" class="contact-icon" aria-hidden="true" /> Pedir orçamento <Icon name="arrow-left" class="arrow-right" aria-hidden="true" />
+        </a>
+        <details class="mobile-menu">
+          <summary aria-label="Abrir menu de navegação">
+            <span>Menu</span><Icon name="menu" class="menu-icon menu-open-icon" aria-hidden="true" /><Icon name="close" class="menu-icon menu-close-icon" aria-hidden="true" />
+          </summary>
+          <nav class="mobile-nav" aria-label="Navegação móvel">
+            {siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+            <a class="mobile-contact" href={whatsappHref} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" class="contact-icon" aria-hidden="true" /> Pedir orçamento no WhatsApp</a>
+          </nav>
+        </details>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src={previewMedia.hero.src} alt="" width={previewMedia.hero.width} height={previewMedia.hero.height} fetchpriority="high" decoding="async" />
+        <div class="hero-shade"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> BL Ambiental</p>
+            <h1 id="hero-title">Do projeto ao cuidado do seu jardim.</h1>
+            <p class="hero-description">Paisagismo, implantação, reforma e manutenção de jardins em São Paulo e Grande São Paulo.</p>
+            <div class="hero-actions">
+              <a class="button button-light" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+                <Icon name="whatsapp" class="contact-icon" aria-hidden="true" /> Solicitar orçamento <Icon name="arrow-left" class="arrow-right" aria-hidden="true" />
+              </a>
+              <a class="text-link text-link-light" href="#servicos">
+                Conhecer serviços <Icon name="arrow-left" class="arrow-right" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <div class="hero-side-note" aria-hidden="true"><span>Jardins com espaço para viver</span><span class="hero-note-line"></span><span>01 / 04</span></div>
+        </div>
+        <a class="scroll-cue" href="#servicos" aria-label="Ir para serviços"><span>Explore</span><Icon name="arrow-left" class="arrow-down" aria-hidden="true" /></a>
+      </section>
+
+      <div class="service-ribbon" aria-label="Áreas de atuação">
+        <div class="ribbon-inner"><span>Paisagismo</span><i></i><span>Implantação</span><i></i><span>Reforma</span><i></i><span>Manutenção</span></div>
+      </div>
+
+      <section class="section services-section" id="servicos" aria-labelledby="services-title">
+        <div class="section-inner">
+          <div class="section-heading heading-split">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> O que fazemos</p>
+              <FadeInText as="h2" id="services-title" class="section-title" enhance duration={0.55} blur="0px" yOffset={16}>Cada jardim pede um tipo de cuidado.</FadeInText>
+            </div>
+            <p class="section-lead">Da ideia inicial ao acompanhamento do espaço, encontre o serviço que faz sentido para o seu jardim.</p>
+          </div>
+          <div class="service-grid">
+            {services.map((service, index) => (
+              <FadeInText as="article" class="service-card" enhance duration={0.55} delay={index * 0.08} blur="0px" yOffset={18}>
+                <div class="service-card-top"><span class="service-number">{service.number} / 04</span><span class="service-icon" aria-hidden="true"><Icon name={service.icon} /></span></div>
+                <div><h3>{service.title}</h3><p>{service.description}</p></div>
+                <a href="#contato" aria-label={`Pedir orçamento para ${service.title.toLowerCase()}`}>Conversar sobre {service.title.toLowerCase()} <Icon name="arrow-left" class="arrow-right" aria-hidden="true" /></a>
+              </FadeInText>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="section start-section" id="como-comecar" aria-labelledby="start-title">
+        <div class="section-inner start-grid">
+          <FadeInText class="start-photo" enhance duration={0.65} blur="0px" yOffset={18}>
+            <img src={previewMedia.process.src} alt="Mãos preparando o plantio em um canteiro" width={previewMedia.process.width} height={previewMedia.process.height} loading="lazy" decoding="async" />
+            <div class="photo-label">Seu espaço, a próxima conversa</div>
+          </FadeInText>
+          <div class="start-content">
+            <p class="eyebrow"><span class="eyebrow-line"></span> Primeiro contato</p>
+            <FadeInText as="h2" id="start-title" class="section-title" enhance duration={0.55} blur="0px" yOffset={16}>Para começar, conte sobre o seu espaço.</FadeInText>
+            <p class="section-lead">Algumas informações ajudam a tornar o primeiro contato mais útil.</p>
+            <ol class="step-list">
+              {requestSteps.map((step, index) => (
+                <FadeInText as="li" enhance duration={0.5} delay={index * 0.07} blur="0px" yOffset={12}><span class="step-number">{step.number}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></FadeInText>
+              ))}
+            </ol>
+            <a class="text-link" href={whatsappHref} target="_blank" rel="noopener noreferrer">Começar pelo WhatsApp <Icon name="arrow-left" class="arrow-right" aria-hidden="true" /></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-section" id="sobre" aria-labelledby="about-title">
+        <div class="section-inner about-grid">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> A BL Ambiental</p><FadeInText as="h2" id="about-title" class="section-title" enhance duration={0.55} blur="0px" yOffset={16}>Um lugar para criar. Um jardim para cuidar.</FadeInText></div>
+          <FadeInText class="about-copy" enhance duration={0.55} delay={0.1} blur="0px" yOffset={16}>
+            <p>A BL Ambiental atua com paisagismo, implantação, reforma e manutenção de jardins. Para um espaço novo ou um jardim já existente, o primeiro passo é entender o que ele precisa.</p>
+            <a class="text-link" href="#contato">Fale sobre seu jardim <Icon name="arrow-left" class="arrow-right" aria-hidden="true" /></a>
+          </FadeInText>
+        </div>
+      </section>
+
+      <section class="section questions-section" aria-labelledby="questions-title">
+        <div class="section-inner questions-grid">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> Antes de conversar</p><FadeInText as="h2" id="questions-title" class="section-title" enhance duration={0.55} blur="0px" yOffset={16}>Dúvidas para começar?</FadeInText></div>
+          <FadeInText class="question-list" enhance duration={0.55} blur="0px" yOffset={16}>
+            <details><summary>O que enviar para pedir um orçamento?<span aria-hidden="true">+</span></summary><p>Conte qual serviço procura, informe a cidade e, se puder, envie fotos do espaço pelo WhatsApp.</p></details>
+            <details><summary>Vocês atendem em quais regiões?<span aria-hidden="true">+</span></summary><p>A BL Ambiental atende em São Paulo e Grande São Paulo.</p></details>
+            <details><summary>Posso pedir manutenção para um jardim existente?<span aria-hidden="true">+</span></summary><p>Sim. A manutenção de jardins faz parte dos serviços da BL Ambiental.</p></details>
+          </FadeInText>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contato" aria-labelledby="contact-title">
+        <div class="section-inner contact-grid">
+          <div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> Vamos conversar?</p><FadeInText as="h2" id="contact-title" enhance duration={0.55} blur="0px" yOffset={16}>Seu jardim pode começar por uma conversa.</FadeInText></div>
+          <FadeInText class="contact-action" enhance duration={0.55} delay={0.1} blur="0px" yOffset={16}>
+            <p>Conte o que você precisa e envie fotos do espaço. O atendimento começa pelo WhatsApp.</p>
+            <a class="button button-light" href={whatsappHref} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" class="contact-icon" aria-hidden="true" /> Pedir orçamento no WhatsApp <Icon name="arrow-left" class="arrow-right" aria-hidden="true" /></a>
+            <span>(11) 97331-3795 · São Paulo e Grande São Paulo</span>
+          </FadeInText>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-inner footer-grid">
+        <a class="footer-brand" href={homeHref} aria-label="BL Ambiental — voltar ao início"><img src={`${import.meta.env.BASE_URL}${siteConfig.logo.replace(/^\//, "")}`} alt="BL Ambiental" width="2048" height="877" loading="lazy" /></a>
+        <p>Paisagismo, implantação, reforma e manutenção de jardins em São Paulo e Grande São Paulo.</p>
+        <nav aria-label="Navegação do rodapé">{siteConfig.navigation.map((item) => <a href={item.href}>{item.label}</a>)}</nav>
+      </div>
+      <div class="section-inner footer-bottom"><span>© {new Date().getFullYear()} BL Ambiental</span><a href="#main-content">Voltar ao início ↑</a></div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<script>
+  const mobileMenu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => { mobileMenu.open = false; }));
+    mobileMenu.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileMenu.open) {
+        mobileMenu.open = false;
+        mobileMenu.querySelector("summary")?.focus();
+      }
+    });
+  }
+</script>
